@@ -7,7 +7,7 @@ import matplotlib
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '5'
 from keras.models import load_model
 from layers import BilinearUpSampling2D
-from utils import predict, load_images, display_images
+from utils import predict, load_images, display_images, scale_up
 from matplotlib import pyplot as plt
 
 # Argument Parser
@@ -34,12 +34,15 @@ print('\nModel loaded ({0}).'.format(args.model))
 names = sorted(glob.glob(args.input))
 inputs = load_images(names[:5])
 print('\nLoaded ({0}) images of size {1}.'.format(inputs.shape[0], inputs.shape[1:]))
+print(inputs[0])
 
 # Compute results
 print("start prediction")
-outputs = predict(model, inputs)
+#outputs = predict(model, inputs)
+outputs = scale_up(2, predict(model, inputs, minDepth=10, maxDepth=1000)[:,:,:,0]) * 10.0
 
 print("about to start printing result")
+print(outputs.shape)
 for i in range(outputs.shape[0]):
     one_sample = outputs[i][:,:,0]
     print(one_sample.shape)
