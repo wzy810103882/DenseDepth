@@ -32,7 +32,7 @@ print('\nModel loaded ({0}).'.format(args.model))
 # Input images
 
 names = sorted(glob.glob(args.input))
-inputs = load_images(names)
+inputs = load_images(names[:5])
 print('\nLoaded ({0}) images of size {1}.'.format(inputs.shape[0], inputs.shape[1:]))
 
 # Compute results
