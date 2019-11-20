@@ -36,8 +36,10 @@ inputs = load_images(names)
 print('\nLoaded ({0}) images of size {1}.'.format(inputs.shape[0], inputs.shape[1:]))
 
 # Compute results
+print("start prediction")
 outputs = predict(model, inputs)
 
+print("about to start printing result")
 for i in range(outputs.shape[0]):
     one_sample = outputs[i][:,:,0]
     print(one_sample.shape)
