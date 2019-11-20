@@ -43,6 +43,8 @@ print(np.amin(inputs[0]))
 # Compute results
 print("start prediction")
 #outputs = predict(model, inputs)
+test = predict(model, inputs, minDepth=10, maxDepth=1000)
+print(test.shape)
 outputs = scale_up(2, predict(model, inputs, minDepth=10, maxDepth=1000)[:,:,:,0]) * 10.0
 
 print("about to start printing result")
