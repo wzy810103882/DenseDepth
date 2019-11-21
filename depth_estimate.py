@@ -52,9 +52,11 @@ print(outputs.shape)
 print(outputs[0])
 
 for i in range(outputs.shape[0]):
-    one_sample = outputs[i][:,:,0]
+    one_sample = outputs[i]
     print(one_sample.shape)
     print(one_sample)
+    print(np.amin(one_sample))
+    print(np.amax(one_sample))
     break
 
 
