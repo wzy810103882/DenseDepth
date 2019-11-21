@@ -15,7 +15,7 @@ import numpy as np
 parser = argparse.ArgumentParser(description='High Quality Monocular Depth Estimation via Transfer Learning')
 parser.add_argument('--model', default='nyu.h5', type=str, help='Trained Keras model file.')
 #parser.add_argument('--input', default='examples/*.png', type=str, help='Input filename or folder.')
-parser.add_argument('--input', default='/work/NYUv2/nyu_test_rgb/*.png', type=str, help='Input filename or folder.')  # edit input directory
+parser.add_argument('--input', default='/work/NYUv2/nyu_train_rgb/*.png', type=str, help='Input filename or folder.')  # edit input directory
 
 
 args = parser.parse_args()
@@ -54,7 +54,7 @@ print(outputs[0])
 outputs = np.float32(outputs)
 
 savefolder = '/work/NYUv2_DE'
-np.savez("%s/%s_depth_estimation_densedepth.npz" % (savefolder, "test"), outputs)
+np.savez("%s/%s_depth_estimation_densedepth.npz" % (savefolder, "train"), outputs)
 print("save successful")
 
 #np.savez("%s/%s_depth_estimation_megadepth.npz" % (savefolder, "test"), test_depth)
