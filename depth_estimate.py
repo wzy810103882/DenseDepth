@@ -34,7 +34,7 @@ print('\nModel loaded ({0}).'.format(args.model))
 
 names = sorted(glob.glob(args.input))
 #print(names[:5])
-inputs = load_images(names[:5])
+inputs = load_images(names)
 print('\nLoaded ({0}) images of size {1}.'.format(inputs.shape[0], inputs.shape[1:]))
 #print(inputs.shape)
 #print(inputs[1,:,:,0])
@@ -51,13 +51,21 @@ print("about to start printing result")
 print(outputs.shape)
 print(outputs[0])
 
-for i in range(outputs.shape[0]):
-    one_sample = outputs[i]
-    print(one_sample.shape)
-    print(one_sample)
-    print(np.amin(one_sample))
-    print(np.amax(one_sample))
-    break
+outputs = np.float32(outputs)
+
+savefolder = '/work/NYUv2_DE'
+np.savez("%s/%s_depth_estimation_densedepth.npz" % (savefolder, "test"), outputs)
+print("save successful")
+
+#np.savez("%s/%s_depth_estimation_megadepth.npz" % (savefolder, "test"), test_depth)
+
+#for i in range(outputs.shape[0]):
+#    one_sample = outputs[i]
+#    print(one_sample.shape)
+#    print(one_sample)
+#    print(np.amin(one_sample))
+#    print(np.amax(one_sample))
+#    break
 
 
 #matplotlib problem on ubuntu terminal fix
