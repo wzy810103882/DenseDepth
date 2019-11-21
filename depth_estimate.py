@@ -33,24 +33,23 @@ print('\nModel loaded ({0}).'.format(args.model))
 # Input images
 
 names = sorted(glob.glob(args.input))
-print(names[:5])
+#print(names[:5])
 inputs = load_images(names[:5])
 print('\nLoaded ({0}) images of size {1}.'.format(inputs.shape[0], inputs.shape[1:]))
-print(inputs.shape)
-print(inputs[1,:,:,0])
-print(np.amax(inputs[1,:,:,0]))
-print(np.amin(inputs[1,:,:,0]))
+#print(inputs.shape)
+#print(inputs[1,:,:,0])
+#print(np.amax(inputs[1,:,:,0]))
+#print(np.amin(inputs[1,:,:,0]))
 
 # Compute results
 print("start prediction")
 #outputs = predict(model, inputs)
-test = predict(model, inputs, minDepth=10, maxDepth=1000)
-print(test.shape)
-outputs = scale_up(2, predict(model, inputs, minDepth=10, maxDepth=1000, batch_size=bs)[:,:,:,0]) * 10.0
-
+#test = predict(model, inputs, minDepth=10, maxDepth=1000)
+#print(test.shape)
+outputs = scale_up(2, predict(model, inputs, minDepth=10, maxDepth=1000)[:,:,:,0]) * 10.0
 print("about to start printing result")
 print(outputs.shape)
-
+print(outputs[0])
 
 for i in range(outputs.shape[0]):
     one_sample = outputs[i][:,:,0]
